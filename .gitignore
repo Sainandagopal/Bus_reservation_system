@@ -1,0 +1,34 @@
+# Java / Maven
+backend/target/
+backend/data/
+*.class
+*.log
+
+# React / Node
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+npm-debug.log*
+
+# Environment and credentials
+.env
+.env.*
+!.env.example
+
+# IDE / OS
+.idea/
+.DS_Store
+Thumbs.db
+
+# User-local portable Maven/Node tool cache
+.tools/
+
+# Generated React distribution copied into Spring Boot at build time
+backend/src/main/resources/static/
+
+# Local HTTPS development key material
+backend/mango-localhost.p12
+backend/mango-localhost.cer
+
+# Runtime state used by the one-click Windows launcher
+.mango-startup-status

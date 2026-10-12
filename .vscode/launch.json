@@ -1,0 +1,22 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Spring Boot - MangoBusApplication",
+      "request": "launch",
+      "mainClass": "com.mango.bus.MangoBusApplication",
+      "projectName": "mango-bus-api",
+      "cwd": "${workspaceFolder}/backend",
+      "env": {
+        "PORT": "8080",
+        "MANGO_ADMIN_USERNAME": "admin",
+        "MANGO_ADMIN_PASSWORD": "Admin@123",
+        "FRONTEND_ORIGIN": "https://localhost:8080",
+        "MANGO_SSL_ENABLED": "true",
+        "MANGO_SSL_KEYSTORE": "file:./mango-localhost.p12",
+        "MANGO_SSL_KEYSTORE_PASSWORD": "mango-local-dev"
+      }
+    }
+  ]
+}

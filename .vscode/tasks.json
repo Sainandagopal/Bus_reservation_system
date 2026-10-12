@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Start Mango (Complete App)",
+      "type": "shell",
+      "command": "powershell.exe -ExecutionPolicy Bypass -File .\\start-mango.ps1",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Build Frontend (Production)",
+      "type": "shell",
+      "command": "powershell.exe -ExecutionPolicy Bypass -File .\\build-frontend.ps1",
+      "problemMatcher": []
+    },
+    {
+      "label": "Start Backend (Spring Boot)",
+      "type": "shell",
+      "command": "powershell.exe -ExecutionPolicy Bypass -File .\\start-backend.ps1",
+      "problemMatcher": []
+    },
+    {
+      "label": "Start Frontend Dev (Vite)",
+      "type": "shell",
+      "command": "npm run dev",
+      "options": {
+        "cwd": "${workspaceFolder}/frontend"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Maven Package Backend",
+      "type": "shell",
+      "command": "mvn clean package",
+      "options": {
+        "cwd": "${workspaceFolder}/backend"
+      },
+      "problemMatcher": []
+    }
+  ]
+}
