@@ -215,3 +215,19 @@ Keep the backend terminal open and inspect the first Java exception. Check `http
 - The HTTPS certificate and local H2 database are local development assets and are not included in Git.
 - A self-signed certificate is acceptable for localhost development only. Public deployment requires a certificate from a trusted CA, production secrets management, database backups, monitoring, and a security review.
 - No Razorpay, UPI, checkout or online payment feature is configured.
+
+---
+
+## ☁️ Deploying to Render (public HTTPS link)
+
+This repo includes a `Dockerfile` and `render.yaml`. Render builds React, bundles it into the Spring Boot JAR and serves everything from one URL. Render provides the HTTPS certificate, so the local self-signed certificate is not used there (`MANGO_SSL_ENABLED=false` is set in the Dockerfile).
+
+1. Push this repo to GitHub (the project files must be at the repo root).
+2. On [render.com](https://render.com): **New + → Blueprint** → select the repo → **Apply**.
+   (Or **New + → Web Service** → runtime **Docker**, instance **Free**, Health Check Path `/api/health`.)
+3. Wait for the first build (about 5–10 minutes). Open the `https://mango-bus-xxxx.onrender.com` link.
+4. Admin login: username `admin`; password = the `MANGO_ADMIN_PASSWORD` value in the service's **Environment** tab.
+
+Notes:
+- Free plan: the H2 database lives on an ephemeral disk, so accounts/bookings reset on restart or redeploy (sample buses and the admin are re-created automatically). The service sleeps after ~15 minutes idle and takes about a minute to wake.
+- To keep data, use a paid instance and uncomment the `disk` + `SPRING_DATASOURCE_URL` lines in `render.yaml`.

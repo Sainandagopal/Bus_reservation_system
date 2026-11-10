@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: mango-bus
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /api/health
+    autoDeploy: true
+    envVars:
+      - key: MANGO_ADMIN_USERNAME
+        value: admin
+      # Render generates a random password. Find it under the service's
+      # Environment tab -> MANGO_ADMIN_PASSWORD, and use it to log in as admin.
+      - key: MANGO_ADMIN_PASSWORD
+        generateValue: true
+
+    # --- Keep bookings/accounts across restarts (needs a PAID plan) ---
+    # 1. Change `plan: free` above to `plan: starter`
+    # 2. Uncomment the lines below
+    #   - key: SPRING_DATASOURCE_URL
+    #     value: jdbc:h2:file:/data/mango-bus-db;DB_CLOSE_ON_EXIT=FALSE
+    # disk:
+    #   name: mango-data
+    #   mountPath: /data
+    #   sizeGB: 1
